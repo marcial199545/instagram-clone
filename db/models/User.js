@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import gravatar from "gravatar";
 import bcrypt from "bcrypt";
 const UserSchema = new Schema({
-    name: {
+    usrName: {
         type: String,
         required: true
     },
@@ -14,6 +14,12 @@ const UserSchema = new Schema({
     avatar: {
         type: String
     },
+    description: {
+        type: String
+    },
+    bio: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
@@ -21,6 +27,18 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    posts: {
+        type: [],
+        default: []
+    },
+    following: {
+        type: [],
+        default: []
+    },
+    followers: {
+        type: [],
+        default: []
     }
 });
 

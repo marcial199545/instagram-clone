@@ -1,28 +1,32 @@
+import { fileLoader, mergeTypes, mergeResolvers } from "merge-graphql-schemas";
+import path from "path";
 import express from "express";
 import graphqlHTTP from "express-graphql";
 import { buildSchema } from "graphql";
 import bodyParser from "body-parser";
 import connectDB from "./db/db";
 
-// The root provides a resolver function for each API endpoint
-import { default as root } from "./resolvers";
-
-// Construct a schema, using GraphQL schema language
-
-import { default as schemaDef } from "./schemas";
 import models from "./db/models/index";
-
-let schema = buildSchema(schemaDef);
 
 const app = express();
 const PORT = process.env.PORT || 3030;
+
+// Construct a schema, using GraphQL schema language
+const schemas = mergeTypes(fileLoader(path.join(__dirname, "./types")));
+
+let schema = buildSchema(schemas);
+// The root provides a resolver function for each API endpoint
+const resolvers = mergeResolvers(
+    fileLoader(path.join(__dirname, "./resolvers"))
+);
+
 // middleware
 app.use(bodyParser.json());
 app.use(
     "/graphql",
     graphqlHTTP({
         schema: schema,
-        rootValue: root,
+        rootValue: resolvers,
         graphiql: true,
         context: { models }
     })

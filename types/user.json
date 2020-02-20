@@ -1,0 +1,40 @@
+{
+    "name": {
+        "type": "String",
+        "required": true
+    },
+    "email": {
+        "type": "String",
+        "required": true,
+        "unique": true
+    },
+    "avatar": {
+        "type": "String"
+    },
+    "description": {
+        "type": "String"
+    },
+    "bio": {
+        "type": "String"
+    },
+    "date": {
+        "type": "Date",
+        "default": "Date.now"
+    },
+    "password": {
+        "type": "String",
+        "required": true
+    },
+    "posts": {
+        "type": [],
+        "default": []
+    },
+    "following": {
+        "type": [],
+        "default": []
+    },
+    "followers": {
+        "type": [],
+        "default": []
+    }
+}

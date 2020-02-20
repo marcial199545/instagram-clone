@@ -1,0 +1,20 @@
+{
+    "description": {
+        "type": "string"
+    },
+    "photo": {
+        "type": "string"
+    },
+    "likedBy": {
+        "type": [],
+        "default": []
+    },
+    "comments": {
+        "type": [],
+        "default": []
+    },
+    "createdAt": {
+        "type": "Date",
+        "default": "Date.now"
+    }
+}

@@ -1,7 +1,12 @@
 export default `
+    type UserShort{
+        _id:ID!
+        usrName:String!
+        avatar:String!
+    }
     type User {
         _id:ID!
-        name:String!
+        usrName:String!
         email:String!
         password:String!
         avatar:String!
@@ -15,7 +20,7 @@ export default `
         getUsers:[User]!
     }
     input CreateUserInput{
-        name:String!
+        usrName:String!
         email:String!
         password:String!
     }
